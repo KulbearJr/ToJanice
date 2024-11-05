@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('images/bg.png');
+      /* Replace 'your-background-image.jpg' with the actual path to your image */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      /* Make sure the body takes the full viewport height */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      /* background: linear-gradient(to right, #920853, #985a9e);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center; */
+      overflow: hidden;
+    }
+
+    /* Add a semi-transparent gradient overlay */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(to bottom, rgba(148, 4, 83, 0.5), rgba(196, 14, 114, 0.3));
+      /* Adjust the gradient and opacity as needed */
+      z-index: -1;
+      /* Place the overlay behind the content */
+    }
+
+    .slider {
+      position: relative;
+      width: 240px;
+      height: 240px;
+      transform-style: preserve-3d;
+      animation: rotate 60s linear infinite;
+
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: perspective(1000px) rotateY(0deg) rotateX(0deg) rotateZ(0deg);
+      }
+
+      50% {
+        transform: perspective(1000px) rotateY(360deg) rotateX(10deg) rotateZ(10deg);
+      }
+
+      100% {
+        transform: perspective(1000px) rotateY(720deg) rotateX(0deg) rotateZ(0deg);
+      }
+    }
+
+    .slider span {
+      position: absolute;
+      top: 75px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform-origin: center;
+      transform-style: preserve-3d;
+      transform: rotateY(calc(var(--i)*45deg)) translateZ(350px);
+    }
+
+    .slider span img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+      transition: 2s;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    }
+
+    .slider span:hover img {
+      transform: translateY(-50px) scale(1.25);
+    }
+
+    .heading {
+      font-size: 60px;
+      font-family: "Sofia", sans-serif;
+      letter-spacing: 4px;
+      word-spacing: 10px;
+      text-transform: uppercase;
+      color: rgb(238, 238, 238);
+      text-align: center;
+      position: absolute;
+      top: 200px;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      width: 1600px;
+      /* Need a specific value to work */
+    }
+
+    .heading2 {
+      font-size: 60px;
+      font-family: "Sofia", sans-serif;
+      letter-spacing: 4px;
+      word-spacing: 10px;
+      text-transform: uppercase;
+      color: rgb(238, 238, 238);
+      text-align: center;
+      position: absolute;
+      top: 100px;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      width: 1600px;
+      /* Need a specific value to work */
+    }
+  </style>
+  <title>To My Dear Janice</title>
+</head>
+
+<body>
+
+  <div class="heading" id="outsideHoursMessage">
+    All good things are worth waiting and fighting for.
+</div>
+
+
+  <!-- <div class="heading">🎂 Happy Birthday, Ada! 🎉</div> -->
+  <div id="normalContent">
+    <div class="heading">Be my mirror, my sword and shield.</div>
+    <div class="heading2">Love one another. By My Side.</div>
+    <div class="slider" id="imageSlider">
+      <span style="--i:1;"><img src="images/1.jpg" alt=""></span>
+      <span style="--i:2;"><img src="images/2.jpg" alt=""></span>
+      <span style="--i:3;"><img src="images/3.jpg" alt=""></span>
+      <span style="--i:4;"><img src="images/4.jpg" alt=""></span>
+      <span style="--i:5;"><img src="images/5.jpg" alt=""></span>
+      <span style="--i:6;"><img src="images/6.jpg" alt=""></span>
+      <span style="--i:7;"><img src="images/7.png" alt=""></span>
+      <span style="--i:8;"><img src="images/8.jpg" alt=""></span>
+    </div>
+  </div>
+  <audio controls autoplay hidden>
+    <source src="images/kik.m4a" type="audio/mp4">
+    <!-- <source src="horse.mp3" type="audio/mpeg"> -->
+    Your browser does not support the audio element.
+  </audio>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Get the current date and time
+      var now = new Date();
+      var currentHour = now.getHours();
+
+      // Set the allowed time range (0:00 am to 1:00 am)
+      var startTime = 0;
+      var endTime = 23;
+
+      // Check if the current hour is within the allowed time range
+      if (currentHour >= startTime && currentHour < endTime) {
+        // If within the time range, display the content
+        document.getElementById('normalContent').style.display = 'block';
+        document.getElementById('outsideHoursMessage').style.display = 'none';
+      } else {
+        // If outside the time range, display a message
+        document.getElementById('normalContent').style.display = 'none';
+        document.getElementById('outsideHoursMessage').style.display = 'block';
+      }
+    });
+  </script>
+
+</body>
+
+</html>
